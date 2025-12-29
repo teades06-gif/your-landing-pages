@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Time Audit - How Many Hours Are You Wasting?</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #1f2937;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .header h2 {
+            font-size: 1.3em;
+            font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #10b981;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .content h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #1f2937;
+            text-align: center;
+        }
+
+        .bullet-points {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .bullet-points li {
+            margin: 15px 0;
+            font-size: 1.15em;
+            padding-left: 10px;
+        }
+
+        .bullet-points li:before {
+            content: "✅ ";
+            margin-right: 10px;
+        }
+
+        .form-section {
+            background: #f9fafb;
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .form-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            color: #1f2937;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1.05em;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: #f59e0b;
+            color: white;
+            padding: 18px;
+            font-size: 1.3em;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .submit-button:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .privacy-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #6b7280;
+        }
+
+        .privacy-note svg {
+            width: 16px;
+            height: 16px;
+            fill: #10b981;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .benefit-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .benefit-card h4 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+
+        .benefit-card p {
+            font-size: 0.95em;
+            color: #6b7280;
+        }
+
+        .social-proof {
+            background: #667eea;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        .social-proof p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .social-proof strong {
+            font-size: 1.8em;
+            display: block;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header h2 {
+                font-size: 1.1em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .form-section {
+                padding: 30px 20px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <span class="badge">🎁 FREE DOWNLOAD</span>
+            <h1>The 5-Minute Social Media Time Audit</h1>
+            <h2>Discover Exactly How Many Hours You're Wasting Each Week (And How to Get Them Back)</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h3>Inside This Free Audit You'll Discover:</h3>
+
+            <ul class="bullet-points">
+                <li>The <strong>#1 time-wasting task</strong> that's killing your productivity (hint: it's not what you think)</li>
+                <li>A simple calculation to reveal your <strong>monthly opportunity cost</strong> in dollars</li>
+                <li>The exact <strong>3-step action plan</strong> to reclaim 15-25 hours per week</li>
+                <li>Which tasks to automate FIRST for <strong>maximum ROI</strong></li>
+                <li>A personalized diagnosis based on your score (Scaling Bottleneck, Time Prison, or Burnout Zone)</li>
+            </ul>
+
+            <!-- Benefits Grid -->
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="icon">⏱️</div>
+                    <h4>5-Minute Audit</h4>
+                    <p>Quick & actionable</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">📊</div>
+                    <h4>Custom Results</h4>
+                    <p>Tailored to your business</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon">💰</div>
+                    <h4>ROI Calculator</h4>
+                    <p>See your true cost</p>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-section">
+                <h3>Get Your Free Time Audit Now</h3>
+                
+                <!-- REPLACE THIS FORM with your email service provider's form embed -->
+                <!-- Examples: ConvertKit, MailChimp, ActiveCampaign -->
+                
+                <form id="leadForm" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">First Name*</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your first name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address*</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clients">How many clients do you currently manage? (Optional)</label>
+                        <input type="number" id="clients" name="clients" placeholder="e.g., 5">
+                    </div>
+
+                    <button type="submit" class="submit-button">GET MY FREE AUDIT NOW</button>
+
+                    <div class="privacy-note">
+                        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                        We respect your privacy. Unsubscribe at any time.
+                    </div>
+                </form>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="social-proof">
+                <p>Join <strong>500+ social media managers</strong> who've downloaded this audit</p>
+                <strong>"Saved me $12,000 in wasted time!"</strong>
+                <p style="font-size: 0.95em; margin-top: 10px; opacity: 0.9;">⭐⭐⭐⭐⭐ Rated 4.9/5</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basic form submission handler
+        // REPLACE THIS with your email service provider's JS code
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Log to console (for testing)
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            alert('Thank you! Check your email for the Time Audit PDF.');
+            
+            // In production, you would send this data to your email service:
+            // fetch('YOUR_EMAIL_SERVICE_ENDPOINT', {
+            //     method: 'POST',
+            //     body: JSON.stringify(data)
+            // });
+            
+            // Redirect to thank you page (optional)
+            // window.location.href = 'thank-you.html';
+        });
+    </script>
+
+</body>
+</html>
